@@ -1,9 +1,51 @@
+
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+/* LOWKEY — Global Design System */
+:root {
+  color-scheme: light;
+
+  /* Backgrounds */
+  --color-background: #f7f4ee;
+  --color-surface: #f2eee6;
+  --color-surface-hover: #ebe5da;
+
+  /* Typography */
+  --color-text: #302c25;
+  --color-text-muted: #82796b;
+
+  /* Borders */
+  --color-border: #e7e1d7;
+
+  /* Brand accent */
+  --color-accent: #8a7052;
+  --color-accent-hover: #70583e;
+
+  /* Buttons */
+  --color-button-bg: #302c25;
+  --color-button-text: #f7f4ee;
+  --color-button-hover: #494237;
+
+  /* Inputs and overlays */
+  --color-input-bg: #fbf9f5;
+  --color-overlay: rgb(48 44 37 / 45%);
+}
+
+/* Global defaults */
+html {
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+/* Utilities */
 @layer utilities {
-  /* Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
@@ -13,8 +55,8 @@
   }
 
   .no-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 
   input:focus ~ label,
@@ -35,9 +77,9 @@
   select:-webkit-autofill,
   select:-webkit-autofill:hover,
   select:-webkit-autofill:focus {
-    border: 1px solid #212121;
-    -webkit-text-fill-color: #212121;
-    -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+    border: 1px solid var(--color-border);
+    -webkit-text-fill-color: var(--color-text);
+    -webkit-box-shadow: 0 0 0 1000px var(--color-input-bg) inset;
     transition: background-color 5000s ease-in-out 0s;
   }
 
@@ -49,13 +91,22 @@
   }
 }
 
+/* Reusable components */
 @layer components {
   .content-container {
-    @apply max-w-[1440px] w-full mx-auto px-6;
+    @apply mx-auto w-full max-w-[1440px] px-6;
   }
 
   .contrast-btn {
-    @apply px-4 py-2 border border-black rounded-full hover:bg-black hover:text-white transition-colors duration-200 ease-in;
+    @apply rounded-full border px-4 py-2 transition-colors duration-200 ease-in;
+    border-color: var(--color-button-bg);
+    background-color: var(--color-button-bg);
+    color: var(--color-button-text);
+  }
+
+  .contrast-btn:hover {
+    background-color: var(--color-button-hover);
+    border-color: var(--color-button-hover);
   }
 
   .text-xsmall-regular {

@@ -1,165 +1,91 @@
-import { ArrowUpRightMini, LightBulb } from "@medusajs/icons"
 import { Button, Heading, Text } from "@medusajs/ui"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import NextSteps from "./next-steps"
-
-/**
- * Placeholder homepage hero.
- *
- * This is example content, not a finished storefront, and it says so: the
- * dashed outline and the label mark it as a component to replace. It stays
- * useful in the meantime by greeting visitors, sending them into the catalogue
- * and pointing at the guide that covers swapping it out.
- *
- * Deleting it is a two line change: drop <Hero /> from
- * src/app/[countryCode]/(main)/page.tsx and delete this folder.
- */
-
-const TUTORIAL_URL =
-  "https://funkyton.com/medusajs-2-0-is-finally-here/#succuessfully-deployed-whats-next"
-
-const REPO_SLUG = "rpuls/medusajs-2.0-for-railway-boilerplate"
-const REPO_URL = `https://github.com/${REPO_SLUG}`
-
-/* ==========================================================================
- * EXAMPLE SECTION START
- *
- * Everything from here to EXAMPLE SECTION END is placeholder content. It is
- * meant to be deleted once you build your own homepage.
- *
- * To remove it completely:
- *   1. open src/app/[countryCode]/(main)/page.tsx and delete the <Hero />
- *      line, plus its import at the top of that file
- *   2. delete this whole folder: src/modules/home/components/hero
- *
- * Nothing else depends on it. The rest of the storefront keeps working.
- * ========================================================================== */
 
 const Hero = () => {
   return (
-    <div className="w-full bg-ui-bg-base py-8 small:py-12">
-      <div className="content-container">
-        <section
-          data-testid="hero"
-          aria-label="Example section"
-          className="rounded-lg border-2 border-dashed border-ui-border-strong bg-ui-bg-subtle"
-        >
-          <div className="flex flex-wrap items-center gap-x-2 border-b-2 border-dashed border-ui-border-strong px-6 py-3">
-            <LightBulb className="text-ui-fg-muted shrink-0" />
-            <Text
-              size="small"
-              leading="compact"
-              className="text-ui-fg-subtle uppercase tracking-wider"
-              data-testid="hero-example-label"
-            >
-              Example section
-            </Text>
-            <Text size="small" leading="compact" className="text-ui-fg-muted">
-              built to be replaced with your own content
-            </Text>
-          </div>
+    <section
+      data-testid="hero"
+      className="relative overflow-hidden bg-[#f4f0e8] text-[#25251f]"
+    >
+      <div className="grid min-h-[600px] grid-cols-1 md:grid-cols-2">
+        {/* Left: Brand message */}
+        <div className="flex flex-col justify-center px-6 py-16 sm:px-12 md:px-16 lg:px-20">
+          <Text className="mb-6 text-xs font-medium uppercase tracking-[0.3em] text-[#777263]">
+            LOWKEY — Crafted for Better Living.
+          </Text>
 
-          <div className="flex flex-col items-center gap-y-6 px-6 py-16 text-center small:py-20">
-            <span>
-              <Heading
-                level="h1"
-                className="text-3xl leading-10 text-ui-fg-base font-normal"
-              >
-                Well done! Your store is up and running
-              </Heading>
-              <Heading
-                level="h2"
-                className="text-3xl leading-10 text-ui-fg-subtle font-normal"
-              >
-                Need help customizing your store?
-              </Heading>
-            </span>
+          <Heading
+            level="h1"
+            className="max-w-xl text-5xl font-normal leading-[1.05] tracking-[-0.04em] sm:text-6xl lg:text-7xl"
+          >
+            Less noise.
+            <br />
+            More nature.
+          </Heading>
 
-            {/* Deliberately the loud element in the middle of the block. The
-                deploy tutorial videos show a shopper landing here and clicking
-                straight through to the article, so anyone following along has
-                to find the same landmark in the same place. Moving it into the
-                footer strip broke that. */}
-            <a
-              href={TUTORIAL_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-x-1 text-xl underline underline-offset-4 text-ui-fg-interactive hover:text-ui-fg-interactive-hover"
-              data-testid="hero-tutorial-link"
-            >
-              Visit the tutorial
-              <ArrowUpRightMini />
-            </a>
+          <Text className="mt-6 max-w-md text-base leading-7 text-[#68665d] sm:text-lg">
+            Thoughtfully chosen wooden furniture for spaces that feel like
+            home. Natural textures, timeless forms, everyday comfort.
+          </Text>
 
+          <div className="mt-9 flex flex-wrap items-center gap-5">
             <LocalizedClientLink href="/store">
-              <Button variant="secondary" data-testid="hero-shop-button">
-                Go to shop
+              <Button className="!h-12 !rounded-none !border-[#292820] !bg-[#292820] !px-7 !text-sm !text-white hover:!bg-[#454338]">
+                Explore collection
+                <span className="ml-3" aria-hidden="true">
+                  ↗
+                </span>
               </Button>
             </LocalizedClientLink>
+
+            <Text className="text-xs uppercase tracking-[0.15em] text-[#777263]">
+              Made for everyday living
+            </Text>
           </div>
 
-          <NextSteps />
-
-          <div className="grid grid-cols-1 gap-6 border-t-2 border-dashed border-ui-border-strong px-6 py-5 small:grid-cols-[1fr_auto] small:gap-10">
-            {/* No second link to the tutorial here. The one in the middle is
-                the one the videos point at, and two links to the same article
-                two rows apart just dilutes it. */}
-            <div className="flex flex-col gap-y-1">
-              <Text size="small" leading="compact" className="text-ui-fg-base">
-                Make this page your own
-              </Text>
-              <Text size="small" leading="compact" className="text-ui-fg-subtle">
-                Everything inside this dashed box is example content that ships
-                with the template. The tutorial above walks through replacing it
-                with your own design, and the rest of the store with it.
-              </Text>
-              <Text
-                size="small"
-                leading="compact"
-                className="mt-2 text-ui-fg-muted"
-              >
-                This store was deployed from{" "}
-                <a
-                  href={REPO_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-x-1 text-ui-fg-subtle underline hover:text-ui-fg-base"
-                  data-testid="hero-repo-link"
-                >
-                  {REPO_SLUG}
-                  <ArrowUpRightMini />
-                </a>
+          <div className="mt-16 flex gap-8 border-t border-[#d9d2c5] pt-5">
+            <div>
+              <Text className="text-sm font-medium">01 / Natural</Text>
+              <Text className="mt-1 text-xs text-[#777263]">
+                Warm materials
               </Text>
             </div>
-
-            <div className="flex flex-col gap-y-1 small:max-w-sm small:border-l-2 small:border-dashed small:border-ui-border-strong small:pl-10">
-              <Text size="small" leading="compact" className="text-ui-fg-muted">
-                Also from the maintainer
+            <div>
+              <Text className="text-sm font-medium">02 / Timeless</Text>
+              <Text className="mt-1 text-xs text-[#777263]">
+                Beyond trends
               </Text>
-              <Text size="small" leading="compact" className="text-ui-fg-subtle">
-                My Own Suite, a private cloud you run yourself: passwords,
-                photos, files and calendars on your own hardware. Open source.
-              </Text>
-              <a
-                href="https://myownsuite.org/"
-                target="_blank"
-                rel="noreferrer"
-                className="mt-1 flex w-fit items-center gap-x-1 text-ui-fg-subtle hover:text-ui-fg-base txt-small"
-                data-testid="hero-mos-link"
-              >
-                myownsuite.org
-                <ArrowUpRightMini />
-              </a>
             </div>
           </div>
-        </section>
+        </div>
+
+        {/* Right: Furniture image */}
+        <div className="relative min-h-[380px] bg-[#ddd3c3] md:min-h-[600px]">
+          <img
+            src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1400&q=85"
+            alt="Warm minimalist living room with natural materials and wooden furniture"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+
+          <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
+
+          <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between text-white sm:bottom-10 sm:left-10 sm:right-10">
+            <div>
+              <Text className="text-xs uppercase tracking-[0.25em] text-white/80">
+                The art of living simply
+              </Text>
+              <Heading level="h2" className="mt-2 text-2xl font-normal">
+                Find your kind of calm.
+              </Heading>
+            </div>
+            <span className="text-2xl" aria-hidden="true">
+              ↗
+            </span>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   )
 }
 
 export default Hero
-
-/* ==========================================================================
- * EXAMPLE SECTION END
- * ========================================================================== */
