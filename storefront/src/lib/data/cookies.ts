@@ -48,9 +48,17 @@ export const getCacheTag = async (tag: string): Promise<string> => {
  * static rendering with DYNAMIC_SERVER_USAGE. Saying nothing gets the same
  * safety without opting the whole storefront out of prerendering.
  */
+
 export const getCacheDirectives = async (
   tag: string
 ): Promise<{} | { cache: "force-cache"; next: { tags: string[] } }> => {
+  // Public catalog data uses a shared tag so one product update
+  // can invalidate cached product responses for every visitor.
+  if (tag === "products") {
+    return { cache: "force-cache", next: { tags: ["products"] } }
+  }
+
+  // Private data keeps the existing visitor-specific cache isolation.
   const cacheTag = await getCacheTag(tag)
 
   if (!cacheTag) {
@@ -59,6 +67,7 @@ export const getCacheDirectives = async (
 
   return { cache: "force-cache", next: { tags: [cacheTag] } }
 }
+
 
 /**
  * Invalidates one visitor's entries for a tag.
